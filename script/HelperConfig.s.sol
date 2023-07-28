@@ -6,6 +6,14 @@ import {FundMe} from "../src/FundMe.sol";
 import {MockV3Aggregator} from "../test/mocks/MockV3Aggregator.sol";
 
 
+// This is the contract that allows us to set the price feed address for the network we are on.
+// We have a different price feed address for each network.
+// We need to know the price of ETH in order to calculate the price of the Anvil product in USD.
+// We use the price feed address to get the price of ETH.
+// This contract is deployed on each network.
+// We use the network ID to determine which price feed to use.
+// The price feed is updated by Chainlink every 1 hour.
+
 contract HelperConfig is Script {
         struct NetworkConfig{
             address priceFeed;

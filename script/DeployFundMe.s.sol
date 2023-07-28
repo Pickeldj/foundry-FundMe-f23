@@ -7,9 +7,11 @@ import {HelperConfig} from "./HelperConfig.s.sol";
 
 contract DeployFundMe is Script {
     function run() external returns (FundMe fundMe) {
+        // Get the address of the ETH/USD price feed
         HelperConfig helperConfig = new HelperConfig();
         address ethUsdPriceFeed = helperConfig.activeNetworkConfig();
 
+        // Deploy the FundMe contract
         vm.startBroadcast();
         fundMe = new FundMe(ethUsdPriceFeed);
         vm.stopBroadcast();
